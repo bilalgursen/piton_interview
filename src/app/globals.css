@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.input {
+  @apply px-1 py-3 bg-[#F4F4FF];
+}
+
+.input-area {
+  @apply flex flex-col gap-1;
+}

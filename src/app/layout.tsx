@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Bookstore",
-  description: "Generated for Piton ",
+  description: "Piton Şirket adayı Bilal Gürşen",
 };
 
 export default function RootLayout({
