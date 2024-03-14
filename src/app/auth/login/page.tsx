@@ -1,7 +1,7 @@
 "use client";
-
 import Image from "next/image";
 import Cookies from "js-cookie";
+import { blurhashToBase64 } from "blurhash-base64";
 
 const page = () => {
   const handleSubmit = async (e: any) => {
@@ -41,6 +41,8 @@ const page = () => {
             className="object-cover h-full"
             width={720}
             height={1000}
+            placeholder="blur"
+            blurDataURL={blurhashToBase64("L49F+$}U5SNawJ-9WCNb5RNHxZNH")}
             alt="Login Cover"
           />
         </div>
