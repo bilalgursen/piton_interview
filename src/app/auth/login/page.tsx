@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Cookies from "js-cookie";
 
 const page = () => {
   const handleSubmit = async (e: any) => {
@@ -8,6 +9,16 @@ const page = () => {
     const formData = new FormData(e.target);
     console.log(JSON.stringify(Object.fromEntries(formData)));
     try {
+      // Normal Şartlarda if (res.ok) kontrol ederim ve bu kod satırı 31.satırdan sonra gelir.
+      // if (res.ok) {
+      // Başarılı response durumu örnek token girdim normal de bunun yerine bir (data.action_login.token) token verirsin
+      Cookies.set(
+        "token",
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQSflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+        { path: "/" }
+      );
+      window.location.reload();
+      // }
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}`, {
         method: "POST",
         headers: {
@@ -16,6 +27,7 @@ const page = () => {
         body: JSON.stringify(Object.fromEntries(formData)),
       });
       const data = await res.json();
+      // Token kontrolü
       console.log(data.action_login.token);
     } catch {}
   };
