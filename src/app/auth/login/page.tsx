@@ -22,8 +22,8 @@ const page = () => {
 
   return (
     <>
-      <div className="grid grid-cols-2 max-h-screen overflow-hidden">
-        <div className="max-h-full">
+      <div className="grid lg:grid-cols-2 grid-cols-1 max-h-screen overflow-hidden">
+        <div className="max-h-full lg:flex hidden">
           <Image
             src={"/cover.png"}
             className="object-cover h-full"
@@ -34,7 +34,7 @@ const page = () => {
         </div>
 
         <form onSubmit={handleSubmit}>
-          <div className="h-screen flex justify-center items-center">
+          <div className="h-screen flex justify-center items-center xl:px-0 px-8">
             <div className="gap-3 flex flex-col h-full justify-evenly w-[497px] *:w-full">
               <div className="w-full flex flex-col items-center justify-around">
                 <Image
