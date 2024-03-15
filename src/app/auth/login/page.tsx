@@ -38,7 +38,7 @@ const page = () => {
         <div className="max-h-full lg:flex hidden">
           <Image
             src={"/cover.png"}
-            className="object-cover h-full"
+            className="object-cover h-full w-full"
             width={720}
             height={1000}
             placeholder="blur"

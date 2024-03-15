@@ -8,7 +8,7 @@ export function middleware(request: NextRequest) {
     return NextResponse.rewrite(new URL("/auth/login", request.url));
   } else {
     // Redirect to login page if not authenticated
-    return NextResponse.rewrite(new URL("/", request.url));
+    return NextResponse.rewrite(new URL("/authed", request.url));
   }
 }
 
