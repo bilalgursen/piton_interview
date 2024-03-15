@@ -7,9 +7,12 @@ export default function DeleteCookie() {
   };
   return (
     <>
-      <div className="cursor-pointer" onClick={() => deleteCookie()}>
-        Cookie Temizle
-      </div>
+      <button
+        className="cursor-pointer btn-custom"
+        onClick={() => deleteCookie()}
+      >
+        Çıkış Yap
+      </button>
     </>
   );
 }

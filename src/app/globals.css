@@ -3,7 +3,11 @@
 @tailwind utilities;
 
 .input {
-  @apply px-1 py-3 bg-[#F4F4FF];
+  @apply px-1 py-3 bg-[#F4F4FF] rounded-sm;
+}
+
+.btn-custom {
+  @apply bg-[#F4F4FF] p-4 rounded-sm text-xl hover:text-white hover:bg-[#6251DD] duration-75 cursor-pointer;
 }
 
 .input-area {
