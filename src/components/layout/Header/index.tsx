@@ -19,7 +19,7 @@ const Header = () => {
           <LuSearch className="text-xl" />
           <input
             type="search"
-            className="w-full bg-transparent text-xl !px-1"
+            className="w-full outline-none bg-transparent text-xl !px-1"
             placeholder="Search"
           />
         </div>
