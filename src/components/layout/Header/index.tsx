@@ -5,7 +5,7 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 
 const Header = () => {
   return (
-    <nav className="h-[120px] w-full flex justify-evenly gap-3 py-10 items-center px-4 sm:px-8 shadow-sm sticky top-0">
+    <nav className="h-[120px] w-full flex justify-evenly gap-3 py-10 items-center px-4 sm:px-8 shadow-sm sticky top-0 bg-white">
       <div className="w-24 p-0 sm:p-4">
         <Image
           src={"/Logo.svg"}
@@ -16,10 +16,10 @@ const Header = () => {
       </div>
       <div className="w-full mx-auto max-w-screen-md">
         <div className="flex w-full items-center input gap-1 !px-3">
-          <LuSearch className="text-xl" />
+          <LuSearch className="text-xl text-[#9696AF]" />
           <input
             type="search"
-            className="w-full outline-none bg-transparent text-xl !px-1"
+            className="w-full outline-none bg-transparent text-xl text-[#9696AF] font-extralight !px-1"
             placeholder="Search"
           />
         </div>

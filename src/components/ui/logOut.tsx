@@ -1,6 +1,6 @@
 "use client";
 import Cookies from "js-cookie";
-export default function DeleteCookie() {
+export default function LogOut() {
   const deleteCookie = () => {
     Cookies.remove("token");
     window.location.reload();
