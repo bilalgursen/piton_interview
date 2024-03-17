@@ -6,8 +6,8 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 
 const Header = () => {
   return (
-    <nav className="z-10 h-[120px] w-full flex justify-evenly gap-3 py-10 items-center px-4 sm:px-8 shadow-sm sticky top-0 bg-white">
-      <div className="w-24 p-0 sm:pe-1 lg:pe-3 cursor-pointer">
+    <nav className="z-10 h-[120px] w-full flex justify-evenly gap-3 py-10 items-center px-4 sm:px-12 shadow-sm sticky top-0 bg-white">
+      <div className="w-24 p-0 sm:pe-1 lg:pe-8 cursor-pointer">
         <Link href="/">
           <Image
             src={"/Logo.svg"}
