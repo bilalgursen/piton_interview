@@ -1,7 +1,62 @@
-export default function Carousel() {
+"use client";
+import React from "react";
+import { EmblaOptionsType } from "embla-carousel";
+import { DotButton, useDotButton } from "./CarouselDotButton";
+
+import useEmblaCarousel from "embla-carousel-react";
+import Image from "next/image";
+
+type PropType = {
+  slides: number[];
+  options?: EmblaOptionsType;
+};
+
+const Carousel: React.FC<PropType> = (props) => {
+  const { slides, options } = props;
+  const [emblaRef, emblaApi] = useEmblaCarousel(options);
+
+  const { selectedIndex, scrollSnaps, onDotButtonClick } =
+    useDotButton(emblaApi);
+
   return (
-    <div>
-      <h2>Sliders</h2>
-    </div>
+    <section className="embla w-full px-4 sm:px-8 ">
+      <div className="embla__viewport rounded-md mt-5" ref={emblaRef}>
+        <div className="embla__container">
+          {slides.map((index) => (
+            <div className="embla__slide" key={index}>
+              {index + 1 == 2 ? (
+                <>
+                  <Image
+                    src={"/Banner.png"}
+                    width={1000}
+                    height={1000}
+                    className="w-full"
+                    alt="Banner İmage Bookstore"
+                  />
+                </>
+              ) : (
+                <div className="slide__number">Piton Yazılım</div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="flex justify-center items-center h-8 mt-4">
+        <div className="embla__dots">
+          {scrollSnaps.map((_: any, index: number) => (
+            <DotButton
+              key={index}
+              onClick={() => onDotButtonClick(index)}
+              className={"embla__dot duration-150 transition-all".concat(
+                index === selectedIndex ? " embla__dot--selected " : ""
+              )}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
   );
-}
+};
+
+export default Carousel;

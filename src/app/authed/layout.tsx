@@ -7,7 +7,7 @@ import Header from "@/components/layout/Header";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Bookstore",
+  title: "Bookstore | Home",
   description: "Piton Şirket adayı Bilal Gürşen",
 };
 
@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} bg-[#FEFEFE]`}>
         <Header />
         {children}
         <Footer />
