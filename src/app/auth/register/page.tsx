@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { blurhashToBase64 } from "blurhash-base64";
 
 const RegisterPage = () => {
-  const [firstName, setFirstName] = useState("");
+  const [name, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -32,11 +32,28 @@ const RegisterPage = () => {
     try {
       // Burada kayıt işlemleri gerçekleştirilir, örnek olarak:
       const userData = {
-        firstName,
-        lastName,
+        name,
+        // lastName, Şimdilik comment backend 400 dönüyor
         email,
         password,
       };
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        const token = data.action_register.token;
+        console.error("Çalışıyorsam boş olabilirim", token);
+
+        // Yönlendirme yapılabilir
+        router.push("/"); // Örnek olarak dashboard sayfasına yönlendirildi
+      } else {
+        setErrorMessage("Something get wrong. Please try again.");
+      }
       console.log("User data:", userData);
 
       // Kayıt işlemi başarılı olduğunda ana sayfaya yönlendirilir
@@ -92,12 +109,12 @@ const RegisterPage = () => {
                   <p className="text-xl">Register to your account</p>
                 </div>
                 <div className="input-area">
-                  <label htmlFor="firstName">First Name</label>
+                  <label htmlFor="name">First Name</label>
                   <input
                     required
                     type="text"
-                    name="firstName"
-                    value={firstName}
+                    name="name"
+                    value={name}
                     onChange={(e) => setFirstName(e.target.value)}
                     className="input"
                   />

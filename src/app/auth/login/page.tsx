@@ -30,7 +30,7 @@ const LoginPage = () => {
 
     try {
       const formData = { email, password };
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
