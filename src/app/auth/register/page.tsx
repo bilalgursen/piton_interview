@@ -1,39 +1,63 @@
 "use client";
+import { useState } from "react";
 import Image from "next/image";
-import Cookies from "js-cookie";
-import { blurhashToBase64 } from "blurhash-base64";
 import { useRouter } from "next/navigation";
+import { blurhashToBase64 } from "blurhash-base64";
 
-const page = () => {
+const RegisterPage = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const router = useRouter();
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    console.log(JSON.stringify(Object.fromEntries(formData)));
+
+    // E-mail ve şifre doğrulaması
+    if (!validateEmail(email)) {
+      setErrorMessage("Please enter a valid email address.");
+      return;
+    }
+
+    if (!validatePassword(password)) {
+      setErrorMessage("Password must be 6-20 characters alphanumeric.");
+      return;
+    }
+
+    setErrorMessage(""); // Hata mesajını temizle
+
+    // Kullanıcı kayıt işlemi
     try {
-      // Normal Şartlarda if (res.ok) kontrol ederim ve bu kod satırı 31.satırdan sonra gelir.
-      // if (res.ok) {
-      // Başarılı response durumu örnek token girdim normal de bunun yerine bir (data.action_login.token) token verirsin
-      Cookies.set(
-        "token",
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQSflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
-        { path: "/" }
-      );
-      window.location.reload();
-      // }
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(Object.fromEntries(formData)),
-      });
-      const data = await res.json();
-      // Token kontrolü
-      console.log(data.action_login.token);
-    } catch {}
+      // Burada kayıt işlemleri gerçekleştirilir, örnek olarak:
+      const userData = {
+        firstName,
+        lastName,
+        email,
+        password,
+      };
+      console.log("User data:", userData);
+
+      // Kayıt işlemi başarılı olduğunda ana sayfaya yönlendirilir
+      router.push("/");
+    } catch (error) {
+      console.error("Registration error:", error);
+      setErrorMessage("An error occurred. Please try again later.");
+    }
   };
 
-  const router = useRouter();
+  const validateEmail = (email: string) => {
+    // Basit bir e-mail doğrulama işlevi
+    const re = /\S+@\S+\.\S+/;
+    return re.test(email);
+  };
+
+  const validatePassword = (password: string) => {
+    // Şifrenin 6-20 karakter arası ve alfanumerik olup olmadığını kontrol eden işlev
+    const re = /^[a-zA-Z0-9]{6,20}$/;
+    return re.test(password);
+  };
 
   return (
     <>
@@ -46,7 +70,7 @@ const page = () => {
             height={1000}
             placeholder="blur"
             blurDataURL={blurhashToBase64("L49F+$}U5SNawJ-9WCNb5RNHxZNH")}
-            alt="Login Cover"
+            alt="Register Cover"
           />
         </div>
 
@@ -64,12 +88,41 @@ const page = () => {
               </div>
               <div className="flex flex-col gap-5">
                 <div className="input-area">
-                  <h1 className="text-xl text-slate-500">Welcome Back</h1>
+                  <h1 className="text-xl text-slate-500">Create an Account</h1>
                   <p className="text-xl">Register to your account</p>
                 </div>
                 <div className="input-area">
+                  <label htmlFor="firstName">First Name</label>
+                  <input
+                    required
+                    type="text"
+                    name="firstName"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    className="input"
+                  />
+                </div>
+                <div className="input-area">
+                  <label htmlFor="lastName">Last Name</label>
+                  <input
+                    required
+                    type="text"
+                    name="lastName"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    className="input"
+                  />
+                </div>
+                <div className="input-area">
                   <label htmlFor="email">E-mail</label>
-                  <input required type="email" name="email" className="input" />
+                  <input
+                    required
+                    type="email"
+                    name="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="input"
+                  />
                 </div>
                 <div className="input-area">
                   <label htmlFor="password">Password</label>
@@ -77,15 +130,16 @@ const page = () => {
                     required
                     type="password"
                     name="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     className="input"
                   />
                 </div>
-                <div className="flex gap-3 items-center justify-start text-[#6251DD] cursor-pointer ">
-                  <input type="checkbox" className="border-[#6251DD]" />
-                  Remember me
-                </div>
               </div>
               <div className="flex flex-col *:w-full gap-3">
+                {errorMessage && (
+                  <div className="text-red-500">{errorMessage}</div>
+                )}
                 <button
                   type="submit"
                   className="hover:bg-orange-600/50 bg-orange-600 rounded-md  py-3 text-white w-1/5"
@@ -108,4 +162,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default RegisterPage;

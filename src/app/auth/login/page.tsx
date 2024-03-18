@@ -1,39 +1,75 @@
 "use client";
+import { useState } from "react";
 import Image from "next/image";
 import Cookies from "js-cookie";
 import { blurhashToBase64 } from "blurhash-base64";
 import { useRouter } from "next/navigation";
 
-const page = () => {
+const LoginPage = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const router = useRouter();
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    console.log(JSON.stringify(Object.fromEntries(formData)));
+
+    // E-mail ve şifre doğrulaması
+    if (!validateEmail(email)) {
+      setErrorMessage("Please enter a valid email address.");
+      return;
+    }
+
+    if (!validatePassword(password)) {
+      setErrorMessage("Password must be 6-20 characters alphanumeric.");
+      return;
+    }
+
+    setErrorMessage(""); // Hata mesajını temizle
+
     try {
-      // Normal Şartlarda if (res.ok) kontrol ederim ve bu kod satırı 31.satırdan sonra gelir.
-      // if (res.ok) {
-      // Başarılı response durumu örnek token girdim normal de bunun yerine bir (data.action_login.token) token verirsin
-      Cookies.set(
-        "token",
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQSflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
-        { path: "/" }
-      );
-      window.location.reload();
-      // }
+      const formData = { email, password };
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(Object.fromEntries(formData)),
+        body: JSON.stringify(formData),
       });
-      const data = await res.json();
-      // Token kontrolü
-      console.log(data.action_login.token);
-    } catch {}
+
+      if (res.ok) {
+        const data = await res.json();
+        const token = data.action_login.token;
+        Cookies.set("token", token);
+
+        // Beni hatırla seçeneği işaretlendiğinde token'ı cookie'ye kaydet
+        if (rememberMe) {
+          Cookies.set("token", token, { expires: 7 }); // Örnek olarak 7 gün geçerli olacak şekilde ayarlandı
+        }
+
+        // Yönlendirme yapılabilir
+        router.push("/"); // Örnek olarak dashboard sayfasına yönlendirildi
+      } else {
+        setErrorMessage("Invalid email or password. Please try again.");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      setErrorMessage("An error occurred. Please try again later.");
+    }
   };
 
-  const router = useRouter();
+  const validateEmail = (email: string) => {
+    // Basit bir e-mail doğrulama işlevi
+    const re = /\S+@\S+\.\S+/;
+    return re.test(email);
+  };
+
+  const validatePassword = (password: string) => {
+    // Şifrenin 6-20 karakter arası ve alfanumerik olup olmadığını kontrol eden işlev
+    const re = /^[a-zA-Z0-9]{6,20}$/;
+    return re.test(password);
+  };
 
   return (
     <>
@@ -69,7 +105,14 @@ const page = () => {
                 </div>
                 <div className="input-area">
                   <label htmlFor="email">E-mail</label>
-                  <input required type="email" name="email" className="input" />
+                  <input
+                    required
+                    type="email"
+                    name="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="input"
+                  />
                 </div>
                 <div className="input-area">
                   <label htmlFor="password">Password</label>
@@ -77,15 +120,25 @@ const page = () => {
                     required
                     type="password"
                     name="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     className="input"
                   />
                 </div>
                 <div className="flex gap-3 items-center justify-start text-[#6251DD] cursor-pointer ">
-                  <input type="checkbox" className="border-[#6251DD]" />
+                  <input
+                    type="checkbox"
+                    className="border-[#6251DD]"
+                    checked={rememberMe}
+                    onChange={(e) => setRememberMe(e.target.checked)}
+                  />
                   Remember me
                 </div>
               </div>
               <div className="flex flex-col *:w-full gap-3">
+                {errorMessage && (
+                  <div className="text-red-500">{errorMessage}</div>
+                )}
                 <button
                   type="submit"
                   className="hover:bg-orange-600/50 bg-orange-600 rounded-md  py-3  text-white w-1/5"
@@ -108,4 +161,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default LoginPage;
