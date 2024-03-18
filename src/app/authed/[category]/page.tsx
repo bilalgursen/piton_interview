@@ -1,14 +1,20 @@
+import BestSellerContainer from "@/components/container/BestSeller";
+import ChilderenContainer from "@/components/container/Childeren";
+import ClassicsContainer from "@/components/container/Classics";
+
 export default function page({ params }: { params: { category: string } }) {
-  return (
-    <>
-      <div className="h-[50rem] flex justify-center items-center">
-        <h1>
-          <span className="text-xl font-medium capitalize text-[#EF6B4A]">
-            {params.category}
-          </span>{" "}
-          Details
-        </h1>
-      </div>
-    </>
-  );
+  // Parametre olarak gelen kategoriye göre ilgili componenti çağırma
+  const getCategoryComponent = (category: string) => {
+    switch (category) {
+      case "bestseller":
+        return <BestSellerContainer />;
+      case "children":
+        return <ChilderenContainer />;
+      case "classics":
+        return <ClassicsContainer />;
+      default:
+        return null;
+    }
+  };
+  return <>{getCategoryComponent(params.category)}</>;
 }
