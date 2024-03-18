@@ -65,7 +65,7 @@ const page = () => {
               <div className="flex flex-col gap-5">
                 <div className="input-area">
                   <h1 className="text-xl text-slate-500">Welcome Back</h1>
-                  <p className="text-xl">Login to your account</p>
+                  <p className="text-xl">Register to your account</p>
                 </div>
                 <div className="input-area">
                   <label htmlFor="email">E-mail</label>
@@ -88,16 +88,16 @@ const page = () => {
               <div className="flex flex-col *:w-full gap-3">
                 <button
                   type="submit"
-                  className="hover:bg-orange-600/50 bg-orange-600 rounded-md  py-3  text-white w-1/5"
+                  className="hover:bg-orange-600/50 bg-orange-600 rounded-md  py-3 text-white w-1/5"
                 >
-                  Login
+                  Register
                 </button>
                 <button
                   type="button"
-                  onClick={() => router.push("/auth/register")}
+                  onClick={() => router.push("/")}
                   className="hover:bg-[#F4F4FF] bg-transparent text-[#6251DD] border border-[#6251DD] rounded-md  py-3 w-1/5"
                 >
-                  Register
+                  Login
                 </button>
               </div>
             </div>
