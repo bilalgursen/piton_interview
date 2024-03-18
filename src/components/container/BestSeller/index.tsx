@@ -1,7 +1,9 @@
+import TitleAndPrevious from "@/components/ui/titleAndPrevious";
+
 export default function BestSellerContainer() {
   return (
-    <div className="h-[50rem] flex justify-center items-center">
-      <h1>Best Seller Details</h1>
-    </div>
+    <section className="px-4 sm:px-12 w-full mt-12">
+      <TitleAndPrevious category="Best Seller" />
+    </section>
   );
 }

@@ -20,7 +20,7 @@ interface Product {
   price: number;
   imageUrl: StaticImageData;
 }
-
+// Apiden elde edemediğim için kendi datasetimi figmadaki örneğe göre oluşturdum
 const categories: { [key: string]: Product[] } = {
   BestSeller: [
     {
