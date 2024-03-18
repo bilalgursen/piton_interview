@@ -1,7 +1,7 @@
 import DeleteCookie from "@/components/ui/logOut";
-import BestSeller from "../../ui/bestSeller";
 import Carousel from "@/components/ui/carousel";
 import { EmblaOptionsType } from "embla-carousel";
+import ShowCategory from "../../ui/showCategory";
 const OPTIONS: EmblaOptionsType = {};
 const SLIDE_COUNT = 3;
 const SLIDES = Array.from(Array(SLIDE_COUNT).keys());
@@ -9,9 +9,9 @@ const SLIDES = Array.from(Array(SLIDE_COUNT).keys());
 export default function HomeContainer() {
   return (
     <>
-      <div className="h-screen flex flex-col ">
+      <div className="flex flex-col ">
         <Carousel slides={SLIDES} options={OPTIONS} />
-        <BestSeller />
+        <ShowCategory />
       </div>
       <div className="flex justify-end ">
         <DeleteCookie />
