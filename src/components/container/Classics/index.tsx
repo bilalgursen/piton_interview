@@ -107,8 +107,8 @@ export default function BestSellerContainer() {
                 <Image
                   src={product.imageUrl}
                   alt={product.title}
-                  width={500}
-                  height={500}
+                  width={1000}
+                  height={1000}
                   className="w-full h-full object-cover"
                 />
                 <div className="flex w-full p-2 py-5 justify-between items-end gap-3">
