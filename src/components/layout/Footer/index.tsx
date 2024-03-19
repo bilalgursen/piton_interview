@@ -1,7 +1,12 @@
+import LogOut from "@/components/ui/logOut";
+
 const Footer = () => {
   return (
-    <footer className="h-[120px] w-full flex items-center justify-center">
+    <footer className="h-[120px] w-full flex gap-5 items-center justify-center">
       All rights reserved. &copy; 2024 by Piton
+      <div className="flex justify-end ">
+        <LogOut />
+      </div>
     </footer>
   );
 };

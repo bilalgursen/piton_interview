@@ -1,4 +1,3 @@
-import DeleteCookie from "@/components/ui/logOut";
 import Carousel from "@/components/ui/carousel";
 import { EmblaOptionsType } from "embla-carousel";
 import ShowCategory from "../../ui/showCategory";
@@ -12,9 +11,6 @@ export default function HomeContainer() {
       <div className="flex flex-col ">
         <Carousel slides={SLIDES} options={OPTIONS} />
         <ShowCategory />
-      </div>
-      <div className="flex justify-end ">
-        <DeleteCookie />
       </div>
     </>
   );
