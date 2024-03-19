@@ -6,12 +6,18 @@ export function middleware(request: NextRequest) {
   if (!token) {
     // Token yoksa, kullanıcıyı login sayfasına yönlendir
     return NextResponse.rewrite(new URL("/auth/login", request.url));
-  } else {
-    // Redirect to login page if not authenticated
-    return NextResponse.rewrite(new URL("/authed", request.url));
   }
 }
 
 export const config = {
-  matcher: "/",
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     */
+    "/((?!api|auth/register|static|.*\\..*|_next).*)",
+  ],
 };

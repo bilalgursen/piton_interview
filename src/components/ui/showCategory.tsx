@@ -113,7 +113,7 @@ const ShowCategory = () => {
             </h2>
             <Link
               className="text-xl font-medium text-[#EF6B4A]"
-              href={`/authed/${category.toLowerCase()}`}
+              href={`${category.toLowerCase()}`}
               passHref
             >
               View All
