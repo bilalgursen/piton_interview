@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .input {
-  @apply px-1 py-3 bg-[#F4F4FF] rounded-sm;
+  @apply px-3 py-3 bg-[#F4F4FF] rounded-sm;
 }
 
 .btn-custom {

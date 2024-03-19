@@ -110,6 +110,7 @@ const LoginPage = () => {
                     type="email"
                     name="email"
                     value={email}
+                    placeholder="john@mail.com"
                     onChange={(e) => setEmail(e.target.value)}
                     className="input"
                   />
@@ -121,6 +122,7 @@ const LoginPage = () => {
                     type="password"
                     name="password"
                     value={password}
+                    placeholder="••••••••"
                     onChange={(e) => setPassword(e.target.value)}
                     className="input"
                   />

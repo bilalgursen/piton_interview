@@ -6,7 +6,6 @@ import { blurhashToBase64 } from "blurhash-base64";
 
 const RegisterPage = () => {
   const [name, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -33,7 +32,6 @@ const RegisterPage = () => {
       // Burada kayıt işlemleri gerçekleştirilir, örnek olarak:
       const userData = {
         name,
-        // lastName, Şimdilik comment backend 400 dönüyor
         email,
         password,
       };
@@ -109,24 +107,14 @@ const RegisterPage = () => {
                   <p className="text-xl">Register to your account</p>
                 </div>
                 <div className="input-area">
-                  <label htmlFor="name">First Name</label>
+                  <label htmlFor="name">Name</label>
                   <input
                     required
                     type="text"
                     name="name"
                     value={name}
+                    placeholder="John Doe"
                     onChange={(e) => setFirstName(e.target.value)}
-                    className="input"
-                  />
-                </div>
-                <div className="input-area">
-                  <label htmlFor="lastName">Last Name</label>
-                  <input
-                    required
-                    type="text"
-                    name="lastName"
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
                     className="input"
                   />
                 </div>
@@ -136,6 +124,7 @@ const RegisterPage = () => {
                     required
                     type="email"
                     name="email"
+                    placeholder="john@mail.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="input"
@@ -147,6 +136,7 @@ const RegisterPage = () => {
                     required
                     type="password"
                     name="password"
+                    placeholder="••••••••"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className="input"
