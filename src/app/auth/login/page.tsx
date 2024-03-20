@@ -46,10 +46,10 @@ const LoginPage = () => {
         // Beni hatırla seçeneği işaretlendiğinde token'ı cookie'ye kaydet
         if (rememberMe) {
           Cookies.set("token", token, { expires: 7 }); // Örnek olarak 7 gün geçerli olacak şekilde ayarlandı
+          router.push("/");
         }
 
-        // Yönlendirme yapılabilir
-        router.push("/"); // Örnek olarak dashboard sayfasına yönlendirildi
+        router.push("/");
       } else {
         setErrorMessage("Invalid email or password. Please try again.");
       }
