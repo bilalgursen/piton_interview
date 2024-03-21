@@ -4,14 +4,7 @@ import Book from "@/asset/BookCover/Book-Cover-1.png";
 import Book1 from "@/asset/BookCover/Book-Cover-2.png";
 import Book2 from "@/asset/BookCover/Book-Cover-3.png";
 import Book3 from "@/asset/BookCover/Book-Cover-4.png";
-import Book4 from "@/asset/BookCover/Book-Cover-5.png";
-import Book5 from "@/asset/BookCover/Book-Cover-6.png";
-import Book6 from "@/asset/BookCover/Book-Cover-7.png";
-import Book7 from "@/asset/BookCover/Book-Cover-8.png";
-import Book8 from "@/asset/BookCover/Book-Cover-9.png";
-import Book9 from "@/asset/BookCover/Book-Cover-10.png";
-import Book10 from "@/asset/BookCover/Book-Cover-11.png";
-import Book11 from "@/asset/BookCover/Book-Cover-12.png";
+
 import Image, { StaticImageData } from "next/image";
 
 interface Product {

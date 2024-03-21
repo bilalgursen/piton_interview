@@ -20,6 +20,7 @@ interface Product {
   price: number;
   imageUrl: StaticImageData;
 }
+
 // Apiden elde edemediğim için kendi datasetimi figmadaki örneğe göre oluşturdum
 const categories: { [key: string]: Product[] } = {
   BestSeller: [
@@ -121,9 +122,18 @@ const ShowCategory = () => {
           </div>
           <div className="grid grid-cols-4 gap-6">
             {products.slice(0, 4).map((product, index) => (
-              <div
+              <Link
                 key={index}
-                className="flex items-center bg-[#F4F4FF] border border-[#DCDCEB] rounded-md p-1"
+                href={{
+                  pathname: `${category.toLowerCase()}/${product.title}`,
+                  query: {
+                    title: product.title,
+                    writer: product.writer,
+                    price: product.price,
+                    category: category,
+                  },
+                }}
+                className="flex items-center bg-[#F4F4FF] border border-[#DCDCEB] rounded-md p-1 cursor-pointer"
               >
                 <Image
                   src={product.imageUrl}
@@ -141,7 +151,7 @@ const ShowCategory = () => {
                     {product.price} $
                   </p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

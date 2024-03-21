@@ -24,19 +24,13 @@ const Carousel: React.FC<PropType> = (props) => {
         <div className="embla__container">
           {slides.map((index) => (
             <div className="embla__slide" key={index}>
-              {index + 1 == 2 ? (
-                <>
-                  <Image
-                    src={"/Banner.png"}
-                    width={1000}
-                    height={1000}
-                    className="w-full"
-                    alt="Banner İmage Bookstore"
-                  />
-                </>
-              ) : (
-                <div className="slide__number">Piton Yazılım</div>
-              )}
+              <Image
+                src={"/Banner.png"}
+                width={1000}
+                height={1000}
+                className="w-full"
+                alt="Banner İmage Bookstore"
+              />
             </div>
           ))}
         </div>
