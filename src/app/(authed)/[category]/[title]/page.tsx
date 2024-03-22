@@ -12,3 +12,5 @@ export default function page() {
     </div>
   );
 }
+
+// Bu alana gelene kadar apisiz bir kurgu ile yazdım . Ancak yeni açmış olduğum v2 branch ile apilli  kurgu yapılıp eksik yerlerde bitmiş olucaktır. (Malesef apiler çalışmıyordu onun için bu şekilde bir yol izlemek durumda kaldım)
