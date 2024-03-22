@@ -6,14 +6,18 @@ export default function page({ params }: { params: { category: string } }) {
   // Parametre olarak gelen kategoriye göre ilgili componenti çağırma
   const getCategoryComponent = (category: string) => {
     switch (category) {
-      case "bestseller":
+      case "Best-Seller":
         return <BestSellerContainer />;
-      case "children":
+      case "Children":
         return <ChilderenContainer />;
-      case "classics":
+      case "Classics":
         return <ClassicsContainer />;
       default:
-        return null;
+        return (
+          <h1 className="h-[40rem] flex justify-center items-center">
+            Bu Kategori yeni eklenmiştir.
+          </h1>
+        );
     }
   };
   return <>{getCategoryComponent(params.category)}</>;

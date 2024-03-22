@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import slugify from "slugify";
 
 import getCoverImage from "@/utils/get-cover-image";
 
@@ -17,13 +18,17 @@ async function getProductsById(id: number) {
 
 export default async function Category({ name = "Başlık Yok", id = 1 }) {
   const products = await getProductsById(id);
+  const categoryURL = slugify(name, "-");
 
   return (
     <div className="flex flex-col w-full px-12 mt-12">
       <div className="mb-12">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-4xl font-medium">{name}</h2>
-          <Link className="text-xl font-medium text-[#EF6B4A]" href={name}>
+          <Link
+            className="text-xl font-medium text-[#EF6B4A]"
+            href={categoryURL}
+          >
             View All
           </Link>
         </div>
@@ -31,7 +36,7 @@ export default async function Category({ name = "Başlık Yok", id = 1 }) {
           {products.product.slice(0, 4).map((product: any, index: number) => (
             <Link
               key={index}
-              href={`/${name}/${product.name}`}
+              href={`/${categoryURL}/${product.name}`}
               className="flex items-center bg-[#F4F4FF] border border-[#DCDCEB] rounded-md p-1 cursor-pointer"
             >
               <Image
