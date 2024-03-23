@@ -4,12 +4,12 @@ import { IoIosArrowBack } from "react-icons/io";
 import slugify from "slugify";
 
 interface TitleAndPreviousProps {
-  category: string;
+  backSlug: string;
   title: string;
 }
 
 export default function TitleAndPrevious({
-  category,
+  backSlug,
   title,
 }: TitleAndPreviousProps) {
   const router = useRouter();
@@ -17,7 +17,7 @@ export default function TitleAndPrevious({
   return (
     <div className="flex justify-start items-center">
       <div
-        onClick={() => router.push(`/${category}`)}
+        onClick={() => router.push(`/${backSlug}`)}
         className="flex items-center text-2xl cursor-pointer"
       >
         <IoIosArrowBack />
