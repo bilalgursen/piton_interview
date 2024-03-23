@@ -2,8 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import slugify from "slugify";
 
-import getCoverImage from "@/utils/get-cover-image";
-
 async function getProductsById(id: number) {
   const res = await fetch(
     `https://assign-api.piton.com.tr/api/rest/products/${id}`
@@ -40,7 +38,7 @@ export default async function Category({ name = "Başlık Yok", id = 1 }) {
               className="flex items-center bg-[#F4F4FF] border border-[#DCDCEB] rounded-md p-1 cursor-pointer"
             >
               <Image
-                src={getCoverImage(product.cover)}
+                src={"/cover.png"}
                 alt={product.name}
                 width={500}
                 height={500}

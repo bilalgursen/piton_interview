@@ -1,9 +1,9 @@
 import TitleAndPrevious from "@/components/ui/titleAndPrevious";
 
-import Book4 from "@/asset/BookCover/Book-Cover-5.png";
-import Book5 from "@/asset/BookCover/Book-Cover-6.png";
-import Book6 from "@/asset/BookCover/Book-Cover-7.png";
-import Book7 from "@/asset/BookCover/Book-Cover-8.png";
+import Book from "@/asset/BookCover/Book-Cover-1.png";
+import Book1 from "@/asset/BookCover/Book-Cover-2.png";
+import Book2 from "@/asset/BookCover/Book-Cover-3.png";
+import Book3 from "@/asset/BookCover/Book-Cover-4.png";
 
 import Image, { StaticImageData } from "next/image";
 
@@ -16,86 +16,86 @@ interface Product {
 
 // Apiden elde edemediğim için kendi datasetimi figmadaki örneğe göre oluşturdum
 const categories: { [key: string]: Product[] } = {
-  Classics: [
+  BestSeller: [
     {
-      title: "Romeo ve Juliet",
-      writer: "William Shakespeare",
+      title: "Dune",
+      writer: "Frank Herbert",
       price: 87.75,
-      imageUrl: Book4,
+      imageUrl: Book,
     },
     {
-      title: "Genç Werther’in Acıları",
-      writer: "Goethe",
+      title: "1984",
+      writer: "George Orwell",
       price: 35.75,
-      imageUrl: Book5,
+      imageUrl: Book1,
     },
     {
-      title: "Zaman Makinesi",
-      writer: "H.G. Wells",
+      title: "Ikigai",
+      writer: "Hector Garcia",
       price: 36.0,
-      imageUrl: Book6,
+      imageUrl: Book2,
     },
     {
-      title: "Olağanüstü Bir Gece",
-      writer: "Stefan Zweig",
+      title: "Metafizik",
+      writer: "Aristoteles",
       price: 36.0,
-      imageUrl: Book7,
+      imageUrl: Book3,
     },
     {
-      title: "Romeo ve Juliet",
-      writer: "William Shakespeare",
+      title: "Dune",
+      writer: "Frank Herbert",
       price: 87.75,
-      imageUrl: Book4,
+      imageUrl: Book,
     },
     {
-      title: "Genç Werther’in Acıları",
-      writer: "Goethe",
+      title: "1984",
+      writer: "George Orwell",
       price: 35.75,
-      imageUrl: Book5,
+      imageUrl: Book1,
     },
     {
-      title: "Zaman Makinesi",
-      writer: "H.G. Wells",
+      title: "Ikigai",
+      writer: "Hector Garcia",
       price: 36.0,
-      imageUrl: Book6,
+      imageUrl: Book2,
     },
     {
-      title: "Olağanüstü Bir Gece",
-      writer: "Stefan Zweig",
+      title: "Metafizik",
+      writer: "Aristoteles",
       price: 36.0,
-      imageUrl: Book7,
+      imageUrl: Book3,
     },
     {
-      title: "Romeo ve Juliet",
-      writer: "William Shakespeare",
+      title: "Dune",
+      writer: "Frank Herbert",
       price: 87.75,
-      imageUrl: Book4,
+      imageUrl: Book,
     },
     {
-      title: "Genç Werther’in Acıları",
-      writer: "Goethe",
+      title: "1984",
+      writer: "George Orwell",
       price: 35.75,
-      imageUrl: Book5,
+      imageUrl: Book1,
     },
     {
-      title: "Zaman Makinesi",
-      writer: "H.G. Wells",
+      title: "Ikigai",
+      writer: "Hector Garcia",
       price: 36.0,
-      imageUrl: Book6,
+      imageUrl: Book2,
     },
     {
-      title: "Olağanüstü Bir Gece",
-      writer: "Stefan Zweig",
+      title: "Metafizik",
+      writer: "Aristoteles",
       price: 36.0,
-      imageUrl: Book7,
+      imageUrl: Book3,
     },
   ],
 };
 
-export default function BestSellerContainer() {
+export default function CategoryDetailsContainer({ name }: any) {
   return (
     <section className="px-4 sm:px-12 w-full mt-12">
-      <TitleAndPrevious category="Classics" />
+      <TitleAndPrevious category={name} title="Category" />
       {Object.entries(categories).map(([category, products]) => (
         <div key={category} className="mt-12">
           <div className="grid grid-cols-4 gap-6">
