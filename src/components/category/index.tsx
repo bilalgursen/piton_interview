@@ -1,5 +1,4 @@
 import GetCoverImage from "@/utils/get-cover-image";
-import Image from "next/image";
 import Link from "next/link";
 import slugify from "slugify";
 
@@ -17,7 +16,10 @@ async function getProductsById(id: number) {
 
 export default async function Category({ name = "Başlık Yok", id = 1 }) {
   const products = await getProductsById(id);
-  const categoryURL = slugify(name, "-");
+  const categoryURL = slugify(name, {
+    lower: true,
+    replacement: "-",
+  });
 
   return (
     <div className="flex flex-col w-full px-12 mt-12">

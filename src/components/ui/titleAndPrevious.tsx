@@ -22,7 +22,7 @@ export default function TitleAndPrevious({
         className="flex items-center text-2xl cursor-pointer"
       >
         <IoIosArrowBack />
-        <h1 className="font-medium">{decodedTitle}</h1>
+        <h1 className="font-medium capitalize">{decodedTitle}</h1>
       </div>
     </div>
   );

@@ -92,7 +92,14 @@ const categories: { [key: string]: Product[] } = {
   ],
 };
 
-export default function CategoryDetailsContainer({ name }: any) {
+export default function CategoryDetailsContainer({
+  name,
+  id,
+}: {
+  name: string;
+  id: number;
+}) {
+  //Burada id ile apiye istek at
   return (
     <section className="px-4 sm:px-12 w-full mt-12">
       <TitleAndPrevious previous={"/"} title={name} />
