@@ -1,3 +1,4 @@
+import GetCoverImage from "@/utils/get-cover-image";
 import Image from "next/image";
 import Link from "next/link";
 import slugify from "slugify";
@@ -34,17 +35,12 @@ export default async function Category({ name = "Başlık Yok", id = 1 }) {
           {products.product.slice(0, 4).map((product: any, index: number) => (
             <Link
               key={index}
-              href={`/${categoryURL}/${product.name}`}
+              // İlk başta backend den gelen name'e uymak için slugify kullanıldı.
+              href={`/${categoryURL}/${slugify(product.slug, "-")}`}
               className="flex items-center bg-[#F4F4FF] border border-[#DCDCEB] rounded-md p-1 cursor-pointer"
             >
-              <Image
-                src={"/cover.png"}
-                alt={product.name}
-                width={500}
-                height={500}
-                className="w-32 h-48 object-cover"
-              />
-              <div className="flex flex-col h-full p-4 justify-between gap-3">
+              <GetCoverImage filename={product.cover} />
+              <div className="flex flex-col h-full w-full p-4 justify-between gap-3">
                 <div>
                   <h3 className="text-xl font-medium">{product.name}</h3>
                   <p className="text-sm text-gray-500">{product.author}</p>

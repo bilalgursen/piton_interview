@@ -13,6 +13,7 @@ export default function TitleAndPrevious({
   title,
 }: TitleAndPreviousProps) {
   const router = useRouter();
+  const decodedTitle = decodeURIComponent(title.replace(/-/g, " "));
 
   return (
     <div className="flex justify-start items-center">
@@ -21,13 +22,7 @@ export default function TitleAndPrevious({
         className="flex items-center text-2xl cursor-pointer"
       >
         <IoIosArrowBack />
-        <h1 className="font-medium capitalize">
-          {slugify(title, {
-            locale: "tr", // language code of the locale to use
-            trim: true, // trim leading and trailing replacement chars, defaults to `true`
-          })}{" "}
-          Details
-        </h1>
+        <h1 className="font-medium">{decodedTitle}</h1>
       </div>
     </div>
   );

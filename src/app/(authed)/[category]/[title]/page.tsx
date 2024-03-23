@@ -7,8 +7,8 @@ export default function page({
   params: { category: string; title: string };
 }) {
   return (
-    <div>
-      <TitleAndPrevious previous={params.category} title={params.title} />
-    </div>
+    <section className="px-4 sm:px-12 w-full mt-12">
+      <TitleAndPrevious previous={params.category} title="Book Details" />
+    </section>
   );
 }
