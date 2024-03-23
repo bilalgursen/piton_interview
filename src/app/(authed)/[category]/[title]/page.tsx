@@ -8,7 +8,7 @@ export default function page({
 }) {
   return (
     <div>
-      <TitleAndPrevious backSlug={params.category} title={params.title} />
+      <TitleAndPrevious previous={params.category} title={params.title} />
     </div>
   );
 }

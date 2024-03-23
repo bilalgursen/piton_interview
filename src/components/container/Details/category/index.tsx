@@ -95,7 +95,7 @@ const categories: { [key: string]: Product[] } = {
 export default function CategoryDetailsContainer({ name }: any) {
   return (
     <section className="px-4 sm:px-12 w-full mt-12">
-      <TitleAndPrevious backSlug={"/"} title={name} />
+      <TitleAndPrevious previous={"/"} title={name} />
       {Object.entries(categories).map(([category, products]) => (
         <div key={category} className="mt-12">
           <div className="grid grid-cols-4 gap-6">
