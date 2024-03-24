@@ -1,4 +1,4 @@
-import BookDetailsContainer from "@/components/container/Details/book";
+import BookDetailsContainer from "@/container/Details/book";
 import TitleAndPrevious from "@/components/ui/titleAndPrevious";
 import convertSlugToId from "@/utils/convert-slug-to-id";
 

@@ -1,4 +1,4 @@
-import CategoryDetailsContainer from "@/components/container/Details/category";
+import CategoryDetailsContainer from "@/container/Details/category";
 import convertSlugToId from "@/utils/convert-slug-to-id";
 
 export default async function page({
