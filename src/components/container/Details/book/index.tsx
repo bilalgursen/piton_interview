@@ -1,6 +1,4 @@
-"use client";
 import GetCoverImage from "@/utils/get-cover-image";
-import { useEffect, useState } from "react";
 
 interface Product {
   name: string;
