@@ -11,46 +11,38 @@ interface Product {
   cover: string;
 }
 
-export default function BookDetailsContainer({
+const fetchProduct = async (name: string, id: number) => {
+  try {
+    const response = await fetch(
+      `https://assign-api.piton.com.tr/api/rest/products/${id}`
+    );
+    if (!response.ok) {
+      throw new Error("Failed to fetch product");
+    }
+
+    const data = await response.json();
+    const foundProduct = data.product.find(
+      (product: Product) => product.slug === name
+    );
+
+    if (!foundProduct) {
+      throw new Error("Product not found");
+    }
+
+    return foundProduct;
+  } catch (error) {
+    console.error("Error fetching product:", error);
+  }
+};
+
+export default async function BookDetailsContainer({
   name,
   id,
 }: {
   name: string;
   id: number;
 }) {
-  const [product, setProduct] = useState<Product | null>(null);
-
-  useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const response = await fetch(
-          `https://assign-api.piton.com.tr/api/rest/products/${id}`
-        );
-        if (!response.ok) {
-          throw new Error("Failed to fetch product");
-        }
-
-        const data = await response.json();
-        const foundProduct = data.product.find(
-          (product: Product) => product.slug === name
-        );
-
-        if (!foundProduct) {
-          throw new Error("Product not found");
-        }
-
-        setProduct(foundProduct);
-      } catch (error) {
-        console.error("Error fetching product:", error);
-      }
-    };
-
-    fetchProduct();
-  }, [id, name]);
-
-  if (!product) {
-    return <div>Loading...</div>;
-  }
+  const product: Product = await fetchProduct(name, id);
 
   return (
     <section className="px-4 sm:px-12 w-full mt-12">
