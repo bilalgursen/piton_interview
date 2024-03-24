@@ -1,8 +1,6 @@
-"use client";
 import TitleAndPrevious from "@/components/ui/titleAndPrevious";
 import GetCoverImage from "@/utils/get-cover-image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import slugify from "slugify";
 
 interface Product {
@@ -12,35 +10,29 @@ interface Product {
   slug: string;
   cover: string;
 }
+const fetchProducts = async (id: number) => {
+  try {
+    const response = await fetch(
+      `https://assign-api.piton.com.tr/api/rest/products/${id}`
+    );
+    if (!response.ok) {
+      throw new Error("Failed to fetch products");
+    }
 
-export default function CategoryDetailsContainer({
+    const data = await response.json();
+    return data.product;
+  } catch (error) {
+    console.error("Error fetching products:", error);
+  }
+};
+export default async function CategoryDetailsContainer({
   name,
   id,
 }: {
   name: string;
   id: number;
 }) {
-  const [products, setProducts] = useState<Product[]>([]);
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch(
-          `https://assign-api.piton.com.tr/api/rest/products/${id}`
-        );
-        if (!response.ok) {
-          throw new Error("Failed to fetch products");
-        }
-
-        const data = await response.json();
-        setProducts(data.product);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
-
-    fetchProducts();
-  }, [id]);
+  const products: Product[] = await fetchProducts(id);
 
   if (products.length === 0) {
     return <div>Loading...</div>;
