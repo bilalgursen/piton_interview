@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { GiWhiteBook } from "react-icons/gi";
 
 async function getCoverImage(filename: string) {
   try {
@@ -31,7 +32,6 @@ async function getCoverImage(filename: string) {
 
 export default function GetCoverImage({ filename }: { filename: string }) {
   const [coverImageUrl, setCoverImageUrl] = useState<string | null>(null);
-
   useEffect(() => {
     async function fetchCoverImage() {
       try {
@@ -44,18 +44,20 @@ export default function GetCoverImage({ filename }: { filename: string }) {
 
     fetchCoverImage();
   }, [filename]);
-
   if (!coverImageUrl) {
-    return null;
+    return (
+      <div className="book-image-loading">
+        <GiWhiteBook className="text-7xl" />
+      </div>
+    );
   }
-
   return (
     <Image
       src={coverImageUrl}
       alt={filename}
       width={500}
       height={500}
-      className="w-24 h-full object-cover"
+      className="w-full h-full object-cover"
     />
   );
 }

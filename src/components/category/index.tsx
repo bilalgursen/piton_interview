@@ -33,15 +33,17 @@ export default async function Category({ name = "Başlık Yok", id = 1 }) {
             View All
           </Link>
         </div>
-        <div className="grid grid-cols-4 gap-6">
+        <div className="grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-2 gap-6">
           {products.product.slice(0, 4).map((product: any, index: number) => (
             <Link
               key={index}
               // İlk başta backend den gelen name'e uymak için slugify kullanıldı.
               href={`/${categoryURL}/${slugify(product.slug, "-")}`}
-              className="flex items-center bg-[#F4F4FF] border border-[#DCDCEB] rounded-md p-1 cursor-pointer"
+              className="flex flex-col sm:flex-row items-center bg-[#F4F4FF] border border-[#DCDCEB] rounded-md p-1 w-full  cursor-pointer"
             >
-              <GetCoverImage filename={product.cover} />
+              <div className="w-full h-full py-1">
+                <GetCoverImage filename={product.cover} />
+              </div>
               <div className="flex flex-col h-full w-full p-4 justify-between gap-3">
                 <div>
                   <h3 className="text-xl font-medium">{product.name}</h3>

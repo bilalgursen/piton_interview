@@ -112,3 +112,6 @@
   width: 1rem;
   height: 1rem;
 }
+.book-image-loading {
+  @apply flex *:text-3xl animate-pulse *:animate-bounce items-center justify-center w-full min-h-52 h-full bg-gray-300 rounded-lg;
+}
