@@ -43,13 +43,20 @@ export default async function BookDetailsContainer({
   const product: Product = await fetchProduct(name, id);
 
   return (
+    // Neden yazdığım css işlemiyo çözemedim grid işlemiyor
     <section className="px-4 sm:px-12 w-full mt-12">
       <div className="mt-12">
-        <h2 className="text-3xl font-bold">{product?.name}</h2>
-        <p className="text-gray-500">{product?.author}</p>
-        <p className="text-lg font-bold mt-4">${product?.price}</p>
-        <p className="mt-4">{product?.description}</p>
-        <GetCoverImage filename={product?.cover} />
+        <div className="grid !grid-cols-3 gap-8">
+          <div className="col-span-1">
+            <GetCoverImage filename={product?.cover} />
+          </div>
+          <div className="col-span-2">
+            <h2 className="text-3xl font-bold">{product?.name}</h2>
+            <p className="text-gray-500">{product?.author}</p>
+            <p className="text-lg font-bold mt-4">${product?.price}</p>
+            <p className="mt-4">{product?.description}</p>
+          </div>
+        </div>
       </div>
     </section>
   );
