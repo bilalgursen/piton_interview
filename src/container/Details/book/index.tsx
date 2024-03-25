@@ -65,8 +65,15 @@ export default async function BookDetailsContainer({
             <p className="font-light text-[#090937]/60">
               {product?.description}
             </p>
-            <p className="text-lg font-bold mt-4">${product?.price}</p>
           </div>
+        </div>
+        <div className="w-full flex justify-end">
+          <button className="bg-[#EF6B4A] p-4 rounded-md w-72 active:scale-95 text-white duration-75 transition-all cursor-pointer">
+            <div className="flex w-full justify-between items-center">
+              <span>{product?.price}$</span>
+              <p>Buy Now</p>
+            </div>
+          </button>
         </div>
       </div>
     </section>

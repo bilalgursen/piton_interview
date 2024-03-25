@@ -19,7 +19,7 @@ export default function TitleAndPrevious({
     <div className="flex justify-start items-center">
       <div
         onClick={() => router.push(`/${previous}`)}
-        className="flex items-center text-2xl cursor-pointer"
+        className="flex items-center text-2xl cursor-pointer active:scale-95 duration-150"
       >
         <IoIosArrowBack />
         <h1 className="font-medium capitalize">{decodedTitle}</h1>
