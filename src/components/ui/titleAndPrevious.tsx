@@ -1,7 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { IoIosArrowBack } from "react-icons/io";
-import slugify from "slugify";
 
 interface TitleAndPreviousProps {
   previous: string;
