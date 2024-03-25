@@ -1,20 +1,11 @@
-import BestSellerContainer from "@/components/container/BestSeller";
-import ChilderenContainer from "@/components/container/Childeren";
-import ClassicsContainer from "@/components/container/Classics";
+import CategoryDetailsContainer from "@/container/Details/category";
+import convertSlugToId from "@/utils/convert-slug-to-id";
 
-export default function page({ params }: { params: { category: string } }) {
-  // Parametre olarak gelen kategoriye göre ilgili componenti çağırma
-  const getCategoryComponent = (category: string) => {
-    switch (category) {
-      case "bestseller":
-        return <BestSellerContainer />;
-      case "children":
-        return <ChilderenContainer />;
-      case "classics":
-        return <ClassicsContainer />;
-      default:
-        return null;
-    }
-  };
-  return <>{getCategoryComponent(params.category)}</>;
+export default async function page({
+  params,
+}: {
+  params: { category: string };
+}) {
+  const id = await convertSlugToId(params.category);
+  return <CategoryDetailsContainer name={params.category} id={id} />;
 }

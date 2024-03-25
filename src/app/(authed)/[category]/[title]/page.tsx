@@ -1,15 +1,18 @@
-"use client";
+import BookDetailsContainer from "@/container/Details/book";
 import TitleAndPrevious from "@/components/ui/titleAndPrevious";
-import { useSearchParams } from "next/navigation";
+import convertSlugToId from "@/utils/convert-slug-to-id";
 
-export default function page() {
-  const searchParams = useSearchParams();
-
-  const category: any = searchParams.get("category");
+export default async function page({
+  params,
+}: {
+  params: { category: string; title: string };
+}) {
+  const id = await convertSlugToId(params.category);
   return (
-    <div>
-      <TitleAndPrevious category={category} />
-    </div>
+    <section className="px-4 sm:px-12 w-full mt-12">
+      <TitleAndPrevious previous={params.category} title="Book Details" />
+      <BookDetailsContainer name={params.title} id={id} />
+    </section>
   );
 }
 

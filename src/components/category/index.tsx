@@ -1,7 +1,6 @@
-import Image from "next/image";
+import GetCoverImage from "@/utils/get-cover-image";
 import Link from "next/link";
-
-import getCoverImage from "@/utils/get-cover-image";
+import slugify from "slugify";
 
 async function getProductsById(id: number) {
   const res = await fetch(
@@ -18,30 +17,35 @@ async function getProductsById(id: number) {
 export default async function Category({ name = "Başlık Yok", id = 1 }) {
   const products = await getProductsById(id);
 
+  const categoryURL = slugify(name, {
+    lower: true,
+    replacement: "-",
+  });
+
   return (
     <div className="flex flex-col w-full px-12 mt-12">
       <div className="mb-12">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-4xl font-medium">{name}</h2>
-          <Link className="text-xl font-medium text-[#EF6B4A]" href={name}>
+          <Link
+            className="text-xl font-medium text-[#EF6B4A]"
+            href={categoryURL}
+          >
             View All
           </Link>
         </div>
-        <div className="grid grid-cols-4 gap-6">
+        <div className="grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-2 gap-6">
           {products.product.slice(0, 4).map((product: any, index: number) => (
             <Link
               key={index}
-              href={`/${name}/${product.name}`}
-              className="flex items-center bg-[#F4F4FF] border border-[#DCDCEB] rounded-md p-1 cursor-pointer"
+              // İlk başta backend den gelen name'e uymak için slugify kullanıldı.
+              href={`/${categoryURL}/${slugify(product.slug, "-")}`}
+              className="flex flex-col sm:flex-row items-center bg-[#F4F4FF] border border-[#DCDCEB] rounded-md p-1 w-full  cursor-pointer"
             >
-              <Image
-                src={getCoverImage(product.cover)}
-                alt={product.name}
-                width={500}
-                height={500}
-                className="w-32 h-48 object-cover"
-              />
-              <div className="flex flex-col h-full p-4 justify-between gap-3">
+              <div className="w-full h-full py-1">
+                <GetCoverImage filename={product.cover} />
+              </div>
+              <div className="flex flex-col h-full w-full p-4 justify-between gap-3">
                 <div>
                   <h3 className="text-xl font-medium">{product.name}</h3>
                   <p className="text-sm text-gray-500">{product.author}</p>
