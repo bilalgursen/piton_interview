@@ -35,8 +35,10 @@ Bu alanda version 2 yi maine geçirirkenki yaşadığım conflict durumunu göst
 
 #### Adım 1
 <img width="1470" alt="Ekran Resmi 2024-03-26 00 37 20" src="https://github.com/bilalgursen/piton_interview/assets/107859927/486e0f89-4194-43cf-943a-7fa25c374847">
+
 #### Adım 2
 <img width="1470" alt="Ekran Resmi 2024-03-26 00 38 33" src="https://github.com/bilalgursen/piton_interview/assets/107859927/5b14bb43-26a7-4275-ad1b-238e6d0f894d">
+
 #### Adım 3
 <img width="1470" alt="Ekran Resmi 2024-03-26 00 40 25" src="https://github.com/bilalgursen/piton_interview/assets/107859927/5c68f03d-f225-4bdd-bb36-9f1ffd196fa9">
 
