@@ -115,3 +115,9 @@
 .book-image-loading {
   @apply flex *:text-3xl animate-pulse *:animate-bounce items-center justify-center w-full min-h-52 h-full bg-gray-300 rounded-lg;
 }
+.text-items-end {
+  align-items: end;
+}
+.category-detail-card {
+  @apply flex flex-col items-center bg-[#F4F4FF] border border-[#DCDCEB] rounded-md w-full h-full cursor-pointer pb-5 px-4;
+}
