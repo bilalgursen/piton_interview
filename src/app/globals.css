@@ -7,7 +7,7 @@
 }
 
 .btn-custom {
-  @apply bg-[#F4F4FF] p-4 rounded-sm text-xl hover:text-white hover:bg-[#6251DD] duration-75 cursor-pointer;
+  @apply bg-[#F4F4FF] p-4 rounded-sm text-xl hover:text-white hover:bg-[#6251DD] duration-75 cursor-pointer active:scale-95;
 }
 
 .input-area {

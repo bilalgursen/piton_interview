@@ -47,12 +47,14 @@ export default async function CategoryDetailsContainer({
               className="category-detail-card"
             >
               {" "}
-              <div className="w-full h-full">
+              <div className="w-full pt-2">
                 <GetCoverImage filename={product?.cover} />
               </div>
-              <div className="flex w-full justify-between items-end gap-3">
+              <div className="flex w-full h-full justify-between items-end gap-3">
                 <div className="h-full flex flex-col justify-center">
-                  <h3 className="text-xl font-medium">{product?.name}</h3>
+                  <h3 className="text-xl font-medium capitalize">
+                    {product?.name}
+                  </h3>
                   <p className="text-sm text-gray-500">{product?.author}</p>
                 </div>
                 <p className="flex h-full text-items-end text-xl font-semibold  text-[#6251DD]">

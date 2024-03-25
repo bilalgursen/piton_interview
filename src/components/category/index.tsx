@@ -42,12 +42,14 @@ export default async function Category({ name = "Başlık Yok", id = 1 }) {
               href={`/${categoryURL}/${slugify(product.slug, "-")}`}
               className="flex flex-col sm:flex-row items-center bg-[#F4F4FF] border border-[#DCDCEB] rounded-md p-1 w-full  cursor-pointer"
             >
-              <div className="w-full h-full py-1">
+              <div className="w-full py-1">
                 <GetCoverImage filename={product.cover} />
               </div>
               <div className="flex flex-col h-full w-full p-4 justify-between gap-3">
                 <div>
-                  <h3 className="text-xl font-medium">{product.name}</h3>
+                  <h3 className="text-xl font-medium capitalize">
+                    {product.name}
+                  </h3>
                   <p className="text-sm text-gray-500">{product.author}</p>
                 </div>
                 <p className="text-2xl font-semibold text-[#6251DD]">
